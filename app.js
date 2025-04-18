@@ -1,6 +1,7 @@
 const qwerty= document.getElementById("qwerty");
 const phrase= document.getElementById('phrase');
 const btnReset= document.addEventListener('click');
+const btnReset= document.addEventListener('button');
 
 let myVariable = missed;
 
