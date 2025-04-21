@@ -13,7 +13,7 @@ const phrases = [
     'No bigger love than gods'
 ];
 
-startButton.addEventListener('click', () => {
+startButton.addEventListener('click'); => {
 	if (startButton.textContent === 'Start Game') {
 		startGame();
 		overlay.style.display = 'none';	
@@ -22,7 +22,7 @@ startButton.addEventListener('click', () => {
 		startGame();
 		overlay.style.display = 'none';
 	}
-});
+};
 
 
 
