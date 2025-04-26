@@ -1,32 +1,94 @@
-const qwerty = document.querySelector('qwerty');
-const phrase = document.querySelector('phrase');
-const overlay = document.querySelector('overlay');
-const startButton = document.getElementsByClassName('.btn-reset');
+const qwerty = document.getElementById("qwerty");
+const phrase = document.getElementById("phrase");
+const phrases = [
+    "The beach is bright and warm", 
+    "There are high wind mountains",
+    "The lake is fresh water",
+    "In spring flowers bloom",
+    "No bigger love than gods"
+];
 
 let missed = 0;
 
-const phrases = [
-    'The beach is bright and warm', 
-    'There are high wind mountains',
-    'The lake is fresh water',
-    'In spring flowers bloom',
-    'No bigger love than gods'
-];
+document.addEventListener("click", e => {
+    if (e.target.tagName === "A") document.getElementById("overlay").style.display = "none";
+    else if (e.target.tagName === "BUTTON") 
+        {
+      let scoreboard = document.querySelectorAll("scoreboard img");
 
-startButton.addEventListener('click', () => {
-	if (startButton.textContent === 'Start Game') {
-		startGame();
-		overlay.style.display = 'none';	
-	} else {
-		resetGame();
-		startGame();
-		overlay.style.display = 'none';
-	}
+      if (!checkLetter(e.target)) {
+        missed++; scoreboard[scoreboard.length - missed].src = "images/lostHeart.png";
+    }
+
+    checkWin();
+  }
 });
 
-function getRandomPhraseArray(array) {
-    const min = 0;
-    const max = array.length;
-    let randNumber = Math.floor(Math.random() * (max - min)) + min;
-    return (array[randNumber].split(''));
+
+function getRandomPhraseAsArray(arr = phrases) {
+ 
+  const i = Math.floor(Math.random() * arr.length);
+ 
+  const splitPhrase = arr[i].toUpperCase().split("");
+
+  return splitPhrase;
+}
+
+
+function addPhraseToDisplay(arr) {
+  const display = document.querySelector("#phrase ul");
+ 
+  for (i = 0; i < arr.length; i++) {
+    const text = arr[i];
+    let li = document.createElement("li");
+
+    li.textContent = text;
+   
+    if (/\s/.test(text)) li.classList.add("space");
+    else li.classList.add("letter");
+    display.appendChild(li);
   }
+}
+
+function checkLetter(btn) {
+  const phraseEls = document.querySelectorAll(".letter");
+  let match = false;
+
+
+  for (i = 0; i < phraseEls.length; i++) {
+    let el = phraseEls[i];
+
+    if (el.textContent === btn.textContent.toUpperCase()) {
+      console.log(el);
+      el.classList.add("show");
+      match = true;
+    }
+  }
+
+  btn.setAttribute("disabled", "disabled");
+
+  return match;
+}
+
+function checkWin() {
+  const letterEls = document.querySelectorAll(".letter");
+  const shownLetterEls = document.querySelectorAll(".show");
+  let overlay = document.getElementById("overlay");
+  let title = document.querySelector("#overlay .title");
+  let start = document.querySelector("#overlay a");
+
+  if (letterEls.length === shownLetterEls.length) {
+    overlay.style.display = "flex";
+    title.textContent = "YOU WIN :)";
+    overlay.className = "win";
+    start.style.display = "none";
+  } else if (missed >= 5) {
+    overlay.style.display = "flex";
+    title.textContent = "YOU LOSE :(";
+    overlay.className = "lose";
+    start.style.display = "none";
+  }
+}
+
+
+addPhraseToDisplay(getRandomPhraseAsArray());
