@@ -5,7 +5,7 @@ const phrases = [
     "There are high wind mountains",
     "The lake is fresh water",
     "In spring flowers bloom",
-    "No bigger love than gods"
+    "No bigger love than god"
 ];
 
 let missed = 0;
@@ -13,15 +13,15 @@ let missed = 0;
 document.addEventListener("click", e => {
     if (e.target.tagName === "A") document.getElementById("overlay").style.display = "none";
     else if (e.target.tagName === "BUTTON") 
+
         {
-      let scoreboard = document.querySelectorAll("scoreboard img");
-
-      if (!checkLetter(e.target)) {
+    let scoreboard = document.querySelectorAll("#scoreboard img");
+    if (!checkLetter(e.target)) {
         missed++; scoreboard[scoreboard.length - missed].src = "images/lostHeart.png";
-    }
-
+        }
     checkWin();
   }
+
 });
 
 
@@ -38,7 +38,7 @@ function getRandomPhraseAsArray(arr = phrases) {
 function addPhraseToDisplay(arr) {
   const display = document.querySelector("#phrase ul");
  
-  for (i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
     const text = arr[i];
     let li = document.createElement("li");
 
@@ -53,11 +53,9 @@ function addPhraseToDisplay(arr) {
 function checkLetter(btn) {
   const phraseEls = document.querySelectorAll(".letter");
   let match = false;
-
-
-  for (i = 0; i < phraseEls.length; i++) {
+  
+    for (i = 0; i < phraseEls.length; i++) {
     let el = phraseEls[i];
-
     if (el.textContent === btn.textContent.toUpperCase()) {
       console.log(el);
       el.classList.add("show");
@@ -65,7 +63,7 @@ function checkLetter(btn) {
     }
   }
 
-  btn.setAttribute("disabled", "disabled");
+  btn.setAttribute("disabled","disabled");
 
   return match;
 }
@@ -77,12 +75,14 @@ function checkWin() {
   let title = document.querySelector("#overlay .title");
   let start = document.querySelector("#overlay a");
 
-  if (letterEls.length === shownLetterEls.length) {
+    if (letterEls.length === shownLetterEls.length) {
     overlay.style.display = "flex";
     title.textContent = "YOU WIN :)";
     overlay.className = "win";
     start.style.display = "none";
-  } else if (missed >= 5) {
+  } 
+  
+    else if (missed >= 5) {
     overlay.style.display = "flex";
     title.textContent = "YOU LOSE :(";
     overlay.className = "lose";
