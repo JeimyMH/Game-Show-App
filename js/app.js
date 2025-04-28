@@ -1,11 +1,11 @@
 const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 const phrases = [
-    "The beach is bright and warm", 
-    "There are high wind mountains",
-    "The lake is fresh water",
-    "In spring flowers bloom",
-    "No bigger love than god"
+    "Sunny beaches", 
+    "High windy mountains",
+    "Fresh lake water",
+    "Spring flowers bloom",
+    "God loves big"
 ];
 
 let missed = 0;
@@ -26,11 +26,8 @@ document.addEventListener("click", e => {
 
 
 function getRandomPhraseAsArray(arr = phrases) {
- 
   const i = Math.floor(Math.random() * arr.length);
- 
   const splitPhrase = arr[i].toUpperCase().split("");
-
   return splitPhrase;
 }
 
@@ -67,6 +64,10 @@ function checkLetter(btn) {
 
   return match;
 }
+
+qwerty.addEventListener("click", e => {
+
+});
 
 function checkWin() {
   const letterEls = document.querySelectorAll(".letter");
