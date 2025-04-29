@@ -23,6 +23,7 @@ document.addEventListener("click", e => {
     checkWin();
   }
 
+
 });
 
 
@@ -90,6 +91,5 @@ function checkWin() {
     start.style.display = "none";
   }
 }
-
 
 addPhraseToDisplay(getRandomPhraseAsArray());
