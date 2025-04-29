@@ -1,5 +1,6 @@
 const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
+
 const phrases = [
     "Sunny beaches", 
     "High windy mountains",
@@ -14,7 +15,7 @@ document.addEventListener("click", e => {
     if (e.target.tagName === "A") document.getElementById("overlay").style.display = "none";
     else if (e.target.tagName === "BUTTON") 
 
-        {
+  {
     let scoreboard = document.querySelectorAll("#scoreboard img");
     if (!checkLetter(e.target)) {
         missed++; scoreboard[scoreboard.length - missed].src = "images/lostHeart.png";
@@ -66,7 +67,6 @@ function checkLetter(btn) {
 }
 
 qwerty.addEventListener("click", e => {
-
 });
 
 function checkWin() {
