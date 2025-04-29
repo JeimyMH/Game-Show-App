@@ -1,6 +1,8 @@
+/* HTML Elements*/
 const qwerty = document.getElementById("qwerty");
 const phrase = document.getElementById("phrase");
 
+/*Array*/
 const phrases = [
     "Sunny beaches", 
     "High windy mountains",
@@ -11,6 +13,7 @@ const phrases = [
 
 let missed = 0;
 
+/*Overlay*/
 document.addEventListener("click", e => {
     if (e.target.tagName === "A") document.getElementById("overlay").style.display = "none";
     else if (e.target.tagName === "BUTTON") 
@@ -26,14 +29,14 @@ document.addEventListener("click", e => {
 
 });
 
-
+/*Phase Function*/
 function getRandomPhraseAsArray(arr = phrases) {
   const i = Math.floor(Math.random() * arr.length);
   const splitPhrase = arr[i].toUpperCase().split("");
   return splitPhrase;
 }
 
-
+/*Display Function*/
 function addPhraseToDisplay(arr) {
   const display = document.querySelector("#phrase ul");
  
@@ -49,6 +52,7 @@ function addPhraseToDisplay(arr) {
   }
 }
 
+/*CheckLetter Function*/
 function checkLetter(btn) {
   const phraseEls = document.querySelectorAll(".letter");
   let match = false;
@@ -67,9 +71,11 @@ function checkLetter(btn) {
   return match;
 }
 
+/*Keyboard*/
 qwerty.addEventListener("click", e => {
 });
 
+/*Win/Lose Function*/
 function checkWin() {
   const letterEls = document.querySelectorAll(".letter");
   const shownLetterEls = document.querySelectorAll(".show");
